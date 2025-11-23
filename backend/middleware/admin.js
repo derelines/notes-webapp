@@ -1,0 +1,5 @@
+// backend/middleware/admin.js (проверка роли 'admin')
+module.exports = (req, res, next) => {
+    if (req.user.role !== 'admin') return res.status(403).json({ message: 'Access denied: Admin only' });
+    next();
+  };
