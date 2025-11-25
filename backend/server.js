@@ -17,8 +17,8 @@ app.use('/api/search', require('./routes/search'));
 app.use('/api/permissions', require('./routes/permissions'));
 app.use('/api/complaints', require('./routes/complaints'));
 app.use('/api/logs', require('./routes/logs'));
-app.use('/api/admin', require('./admin'));
-app.use(require('./middleware/logMiddleware'));
+app.use('/api/admin', require('./routes/admin'));
+//app.use(require('./middleware/logMiddleware'));
 
 // Обработка ошибок (404 и глобальные)
 app.use((req, res, next) => {
@@ -33,7 +33,7 @@ app.use((err, req, res, next) => {
 const PORT = process.env.PORT || 5000;
 
 // Синхронизация БД (только для dev! В prod используйте миграции)
-sequelize.sync({ alter: true })  // alter: true — обновляет схему без удаления данных
+sequelize.sync()  // alter: true — обновляет схему без удаления данных
   .then(() => {
     console.log('Database synced successfully');
     app.listen(PORT, () => console.log(`Server running on port ${PORT}`));

@@ -79,3 +79,15 @@ CREATE TABLE logs (
     details TEXT
 );
 ALTER SEQUENCE logs_id_seq RESTART WITH 1000000;
+GRANT ALL PRIVILEGES ON DATABASE notes TO notes_user;
+
+
+GRANT ALL ON SCHEMA public TO notes_user;
+GRANT ALL PRIVILEGES ON ALL TABLES IN SCHEMA public TO notes_user;
+GRANT ALL PRIVILEGES ON ALL SEQUENCES IN SCHEMA public TO notes_user;
+
+-- 5. Дайте права на создание таблиц
+ALTER USER notes_user CREATEDB;
+
+select * from users;
+select * from notes;
